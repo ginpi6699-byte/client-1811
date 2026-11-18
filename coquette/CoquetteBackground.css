@@ -1,0 +1,132 @@
+/* Coquette pink background — keyframes + layers.
+   Mọi class đều có prefix "cq-" để không đụng CSS của project. */
+
+.cq-root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Quầng hồng mờ ở giữa trang */
+.cq-glow {
+  --cq-glow-size: min(860px, 120vw);
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: var(--cq-glow-size);
+  height: var(--cq-glow-size);
+  margin: calc(var(--cq-glow-size) / -2) 0 0 calc(var(--cq-glow-size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(245, 200, 218, 0.95) 0%,
+    rgba(248, 218, 231, 0.7) 35%,
+    rgba(252, 236, 243, 0.35) 65%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: cq-glow-breath 8s ease-in-out infinite;
+}
+
+/* Nơ thêu + ngọc trai ở giữa phía trên */
+.cq-bow-top {
+  position: absolute;
+  top: clamp(4px, 1.5vh, 16px);
+  left: 50%;
+  width: min(460px, 80vw);
+  height: auto;
+  mix-blend-mode: multiply;
+  filter: saturate(1.6);
+  transform-origin: 50% 15%;
+  animation: cq-bow-sway 7s ease-in-out infinite;
+}
+
+/* Dải ren dưới đáy (ảnh lặp ngang) */
+.cq-lace {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: auto 120px;
+}
+
+/* Lớp phủ hồng — chỉnh opacity để đậm / nhạt */
+.cq-tint {
+  position: absolute;
+  inset: 0;
+  background: #f7c3d4;
+  mix-blend-mode: multiply;
+  opacity: 0.42;
+}
+
+.cq-wc-bow {
+  position: absolute;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(226, 140, 172, 0.18));
+}
+
+.cq-glitter {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.cq-sparkle {
+  position: absolute;
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 3px rgba(244, 143, 177, 0.7));
+}
+
+/* ---------- Trái tim pastel ombre (FloatingHeart) ---------- */
+.cq-heart {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 3px 6px rgba(226, 130, 165, 0.35))
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+  animation: cq-heart-beat 2.4s ease-in-out infinite;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes cq-float {
+  0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+  50%      { transform: translateY(-10px) rotate(3deg) scale(1.04); }
+}
+@keyframes cq-glow-breath {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+@keyframes cq-bow-sway {
+  0%, 100% { transform: translateX(-50%) rotate(-1.2deg); }
+  50%      { transform: translateX(-50%) rotate(1.2deg); }
+}
+@keyframes cq-twinkle {
+  0%, 100% { opacity: 0.05; transform: scale(0.6); }
+  50%      { opacity: 1;    transform: scale(1.25); }
+}
+@keyframes cq-bling {
+  0%   { transform: scale(0.5) rotate(0deg);  opacity: 0; }
+  50%  { transform: scale(1.3) rotate(45deg); opacity: 0.85; filter: brightness(1.5); }
+  100% { transform: scale(0.5) rotate(90deg); opacity: 0; }
+}
+@keyframes cq-heart-beat {
+  0%, 100% { transform: scale(1); }
+  15%      { transform: scale(1.15); }
+  30%      { transform: scale(1); }
+  45%      { transform: scale(1.1); }
+  60%      { transform: scale(1); }
+}
+
+/* Tôn trọng chế độ "giảm chuyển động" của hệ điều hành */
+@media (prefers-reduced-motion: reduce) {
+  .cq-glow, .cq-bow-top, .cq-wc-bow, .cq-glitter, .cq-sparkle, .cq-heart {
+    animation: none !important;
+  }
+  .cq-bow-top { transform: translateX(-50%); }
+  .cq-glitter { opacity: 0.7; }
+}

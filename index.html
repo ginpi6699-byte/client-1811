@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>18-11-2026 ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="coquette/CoquetteBackground.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="cq-root" class="cq-root" aria-hidden="true"></div>
+
+<main class="stage">
+  <div class="col">
+
+    <!-- Carousel ảnh kỷ niệm -->
+    <div class="glass">
+      <div class="track" id="track"></div>
+    </div>
+
+    <!-- Máy nghe nhạc -->
+    <section class="player">
+      <div class="notch"></div>
+      <div class="art">
+        <img src="assets/player/album-art.png" alt="Album art">
+        <div class="art-sheen"></div>
+      </div>
+      <div class="pbody">
+        <div>
+          <p class="song">Kho báu</p>
+          <p class="artist">Trọng Hiếu</p>
+          <div class="prog">
+            <span id="t-cur">2:21</span>
+            <div class="bar" id="bar"><i id="fill" style="width:65%"></i></div>
+            <span id="t-left">-2:20</span>
+          </div>
+        </div>
+        <div class="ctrl-wrap">
+          <div class="ctrl">
+            <button class="ib" id="prev" aria-label="Previous"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg></button>
+            <button class="ib play" id="play" aria-label="Play or pause">
+              <svg id="ico-pause" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              <svg id="ico-play" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button class="ib" id="next" aria-label="Next"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg></button>
+          </div>
+          <div class="extras">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#5a2147"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#5a2147"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CD + trái tim bay quanh -->
+    <div class="cd-row">
+      <button class="cd-btn" id="cd" aria-label="Play CD"><img src="assets/player/cd.jpg" alt="CD"></button>
+      <div class="orbit">
+        <svg class="heart" viewBox="0 0 32 30" width="100%" height="100%" aria-hidden="true">
+          <defs><linearGradient id="cqHeart" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff0f5"/><stop offset="45%" stop-color="#fbcfdd"/><stop offset="100%" stop-color="#f4a9c0"/>
+          </linearGradient></defs>
+          <path d="M16 28 C6 21 1 15.5 1 9.5 C1 5 4.5 1.5 8.8 1.5 C11.8 1.5 14.4 3.2 16 5.8 C17.6 3.2 20.2 1.5 23.2 1.5 C27.5 1.5 31 5 31 9.5 C31 15.5 26 21 16 28 Z" fill="url(#cqHeart)" stroke="#fff" stroke-width="1.2"/>
+          <path d="M6.5 7.5 C7.5 5.5 9.5 4.6 11.5 5" stroke="#fff" stroke-opacity=".9" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hint">Anh iu click vào nhé</div>
+
+    <!-- Phong thư -->
+    <div class="env-block" id="envBlock">
+      <div class="env-img">
+        <img class="env" src="assets/envelope/envelope-lover-ivory.png" alt="Envelope">
+        <img class="seal" src="assets/envelope/wax-seal-cut.png" alt="Wax seal">
+      </div>
+      <button class="pill" id="openBtn">
+        <img src="assets/envelope/pill-button-ivory.png" alt="">
+        <span>anh mở thư nhé!</span>
+      </button>
+    </div>
+
+    <!-- Thư -->
+    <div class="letter" id="letter" hidden>
+      <div class="letter-in" id="letterIn">
+        <p class="l-title">Thương gửi yêu dấu của em!</p>
+        <p class="l-body">Chúc anh chân cứng đá mềm, vạn sự như ý, mọi điều hành thông. Khó khăn không thể không có nhưng anh hãy luôn nhớ rằng mọi sự cố gắng của anh đều có ý nghĩa, anh sẽ luôn có em đồng hành trên mọi chặng đường. Em yêu và tự hào về anh rất nhiều!</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div id="loveText" class="love-text" hidden>
+  <div class="love-bloom"></div>
+  <h1>I love you more than I can say</h1>
+</div>
+<div id="rain" class="rain" aria-hidden="true"></div>
+
+<audio id="audio" preload="metadata"></audio>
+<script src="app.js"></script>
+</body>
+</html>
